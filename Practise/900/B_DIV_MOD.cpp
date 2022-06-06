@@ -34,16 +34,22 @@ int main()
     fast;
     ll t = 1;
     cin >> t;
-    // vector<pair<string, string>> s;
     while (t--)
     {
-        string a, b;
-        cin >> a >> b;
-    }
+        ll l, r, a;
+        cin >> l >> r >> a;
+        //  cout << l << r << a;
+        ll sum = 0;
+        for (ll i = r; i > r - 2 * a; i--)
+        {
+            if (i / a + (i % a) > sum)
+            {
+                sum = i / a + (i % a);
+            }
+        }
 
+        cout << sum;
+        nl;
+    }
     return 0;
 }
-
-air94724
-
-    05624054832 056211657793_dsl
