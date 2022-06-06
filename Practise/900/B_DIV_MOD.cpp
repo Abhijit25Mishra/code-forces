@@ -36,20 +36,58 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll l, r, a;
-        cin >> l >> r >> a;
-        //  cout << l << r << a;
-        ll sum = 0;
-        for (ll i = r; i > r - 2 * a; i--)
-        {
-            if (i / a + (i % a) > sum)
-            {
-                sum = i / a + (i % a);
-            }
-        }
-
-        cout << sum;
+        ll l, r, x;
+        cin >> l >> r >> x;
+        ll ans = r / x + r % x;
+        ll m = r / x * x - 1;
+        if (m >= l)
+            ans = max(ans, m / x + m % x);
+        cout << ans;
         nl;
+        // ll max = r / a;
+        // ll i = r;
+        // ll sum = 0;
+        // ll fix;
+        // if (r == a)
+        // {
+        //     fix = (r * max) - 2;
+        // }
+        // else if (r % a == 0)
+        // {
+        //     fix = (r * (max - 1)) - 2;
+        // }
+        // else
+        // {
+        //     fix = (r * max) - 2;
+        // }
+        // // cout << i << " " << max << " " << fix << "bale bale";
+        // // nl;
+        // while (i > fix)
+        // {
+
+        //     ll t = i / a + (i % a);
+        //     if (t > sum)
+        //     {
+        //         sum = t;
+        //     }
+        //     // cout << t << " ";
+        //     i--;
+        // }
+
+        // ll sum = 0;
+        // ll t;
+        // ll fix = r - 2 * a;
+        // for (ll i = r; i > fix; i--)
+        // {
+        //     t = i / a + (i % a);
+        //     if (t > sum)
+        //     {
+        //         sum = t;
+        //     }
+        // }
+
+        // cout << sum;
+        // nl;
     }
     return 0;
 }
