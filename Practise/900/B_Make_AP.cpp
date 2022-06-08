@@ -48,12 +48,14 @@ int main()
         // calculating reqired values
         ll aex, bex, cex;
         aex = b - (c - b);
+
         if (!((a + c) & 1))
-            bex = (a + c) / 2;
+            bex = (a + c) / 2; // 34.5 == 34
         else
         {
             bex = -1;
         }
+
         cex = b + (b - a);
 
         // main solution condition
