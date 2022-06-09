@@ -45,6 +45,7 @@ int main()
         ll n, a, b;
         cin >> n >> a >> b;
         ll x[n];
+
         if (max(a, b) <= (n / 2) || min(a, b) > (n / 2))
         {
             cout << -1;
@@ -94,6 +95,7 @@ int main()
                     cout << x[i] << " ";
                 }
         }
+
         nl;
     }
     return 0;
