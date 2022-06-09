@@ -60,44 +60,7 @@ int main()
         {
             a.back() *= 2;
         }
-        cout << accumulate(a.begin(), a.end(), 0LL) << '\n';
-        // ll n;
-        // cin >> n;
-        // vi v(n);
-        // ll sum = 0;
-        // ll pw = 0;
-        // bool flag = false;
-        // fr(n)
-        // {
-        //     ll temp;
-        //     cin >> temp;
-
-        //     if ((!(temp & 1)))
-        //     {
-        //         while (!(temp & 1))
-        //         {
-        //             temp /= 2;
-        //             pw++;
-        //         }
-
-        //         v[i] = temp;
-        //     }
-        //     else
-        //     {
-        //         cin >> v[i];
-        //     }
-        // }
-        // ll maxi = *max_element(all(v));
-        // v.erase(max_element(all(v)));
-        // maxi = pow(2, pw) * maxi;
-        // fr(n - 1)
-        // {
-        //     sum += v[i];
-        // }
-        // cout << maxi << "  " << pw << " " << sum << " " << v.size();
-        // nl;
-        // maxi += sum;
-        // cout << maxi;
+        cout << accumulate(all(a), 0ll) << '\n';
     }
     return 0;
 }
