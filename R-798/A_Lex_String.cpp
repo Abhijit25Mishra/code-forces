@@ -36,14 +36,13 @@ const int N = 2e5 + 5;
 
 int main()
 {
-    // fast;
+
     ll t = 1;
     cin >> t;
     while (t--)
     {
         ll n, m, k;
         cin >> n >> m >> k;
-        // map<char, ll> mp;
         vector<char> a, b;
 
         fr(n)
@@ -61,7 +60,9 @@ int main()
 
         sort(all(a), greater<>());
         sort(all(b), greater<>());
+
         ll aa = 0, bb = 0;
+
         while (!(a.empty() || b.empty()))
         {
             if ((a.back() < b.back() && aa != k) || bb == k)
