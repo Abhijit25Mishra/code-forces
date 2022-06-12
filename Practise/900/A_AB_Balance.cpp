@@ -42,7 +42,7 @@ int main()
 
     while (t--)
     {
-        ll st = 1, en = 0;
+        // ll st = 1, en = 0;
         string s;
         cin >> s;
         ll n = s.length();
