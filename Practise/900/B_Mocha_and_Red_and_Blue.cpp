@@ -41,6 +41,37 @@ int main()
     cin >> t;
     while (t--)
     {
+        ll n;
+        string s;
+        cin >> n >> s;
+        ll all = 0;
+        fr(n)
+        {
+            if (s[i] != '?')
+            {
+                all++;
+            }
+        }
+        if (!all)
+        {
+            s[0] = 'R';
+        }
+
+        rep(i, 1, n)
+        {
+            if (s[i] == '?' && s[i - 1] != '?')
+            {
+                s[i] = s[i - 1] ^ ('R' ^ 'B');
+            }
+        }
+        for (int i = n - 2; i >= 0; i--)
+        {
+            if (s[i] == '?' && s[i + 1] != '?')
+            {
+                s[i] = s[i + 1] ^ ('R' ^ 'B');
+            }
+        }
+        cout << s << endl;
     }
     return 0;
 }
