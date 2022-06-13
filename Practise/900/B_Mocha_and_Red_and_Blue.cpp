@@ -41,29 +41,6 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vi v(n);
-        ll one = 0, zero = 0;
-
-        fr(n)
-        {
-            cin >> v[i];
-            if (v[i] == 0)
-            {
-                zero++;
-            }
-            if (v[i] == 1)
-            {
-                one++;
-            }
-        }
-
-        ll temp = pow(2, zero);
-        ll ans2 = temp * one;
-        cout << ans2;
-
-        nl;
     }
     return 0;
 }
