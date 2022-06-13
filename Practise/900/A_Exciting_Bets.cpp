@@ -41,6 +41,27 @@ int main()
     cin >> t;
     while (t--)
     {
+        ll a, b;
+        cin >> a >> b;
+        ll x = 0;
+        if (a == b)
+        {
+            x = 0;
         }
+        else
+        {
+            ll temp = abs(a - b);
+            x = min(a % temp, temp - (a % temp));
+        }
+        if (abs(a - b) == 1)
+        {
+            cout << 1 << " " << 0;
+        }
+        else
+        {
+            cout << abs(a - b) << " " << x;
+        }
+        nl;
+    }
     return 0;
 }
