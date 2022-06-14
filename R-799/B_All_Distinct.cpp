@@ -53,11 +53,23 @@ int main()
         ll siz = v.size();
         if (n & 1)
         {
-            cout << siz - 1;
+            if (siz & 1)
+            {
+                cout << siz;
+            }
+            else
+                cout << siz - 1;
         }
         else
         {
-            cout << siz;
+            if (siz & 1)
+            {
+                cout << siz - 1;
+            }
+            else
+            {
+                cout << siz;
+            }
         }
         nl;
     }
