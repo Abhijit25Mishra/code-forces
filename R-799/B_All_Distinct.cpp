@@ -41,6 +41,25 @@ int main()
     cin >> t;
     while (t--)
     {
+        ll n;
+        cin >> n;
+        set<ll> v;
+        fr(n)
+        {
+            ll temp;
+            cin >> temp;
+            v.insert(temp);
         }
+        ll siz = v.size();
+        if (n & 1)
+        {
+            cout << siz - 1;
+        }
+        else
+        {
+            cout << siz;
+        }
+        nl;
+    }
     return 0;
 }
