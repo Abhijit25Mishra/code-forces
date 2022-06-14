@@ -41,37 +41,65 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll arr[] = {0, 70, 140, 210, 280, 350, 601, 671, 741, 811, 881, 951, 1202, 1272, 1342, 1412};
-        string s;
-        ll x = 0;
-        cin >> s >> x;
-
-        ll min = 600 * ((int)s[0] - 48) + 60 * ((int)s[1] - 48) + 10 * ((int)s[3] - 48) + (int(s[4]) - 48);
-
-        set<ll> org;
-        fr(16)
+        ll n, x;
+        cin >> n >> x;
+        vi v(n);
+        ll one = 0;
+        fr(n)
         {
-            org.insert(arr[i]);
-        }
-        set<ll> p;
-        fr(10000)
-        {
-            min += x;
-            min = min % 1440;
-            p.insert(min);
-        }
-        ll ans = 0;
-        for (auto x : org)
-        {
-            for (auto y : p)
+            cin >> v[i];
+            if (v[i] == 1)
             {
-                if (x == y)
-                {
-                    ans++;
-                }
+                one++;
             }
         }
-        cout << ans << endl;
+        if (one < x)
+        {
+            cout << -1;
+        }
+        else
+        {
+            ll cuts = 0;
+            ll ans = 0;
+            while (ans != x)
+            {
+                ll siz = v.size();
+                ll f = 1, e = 1;
+                fr(siz)
+                {
+                    if (v[i] == 1)
+                    {
+                        v[i] = -1;
+                        break;
+                    }
+                    if (v[n - 1 - i] == 1)
+                    {
+                        v[n - 1 - i] == -1;
+                        break;
+                    }
+                    if (v[i] == 0)
+                    {
+                        f++;
+                    }
+                    if (v[i] == -1)
+                    {
+                        f = 0;
+                    }
+                    if (v[n - 1 - i] == 0)
+                    {
+                        e++;
+                    }
+                    if (v[n - 1 - i] == -1)
+                    {
+                        e = 0;
+                    }
+                }
+                ans++;
+                cuts += f;
+            }
+            cout << cuts;
+        }
+        nl;
     }
     return 0;
 }
