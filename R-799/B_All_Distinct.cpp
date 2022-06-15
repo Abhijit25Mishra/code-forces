@@ -51,6 +51,7 @@ int main()
             v.insert(temp);
         }
         ll siz = v.size();
+
         if (n & 1)
         {
             if (siz & 1)
