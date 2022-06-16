@@ -41,22 +41,6 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, x;
-        cin >> n >> x;
-        ll pre[n];
-        ll a[n];
-        fr(n)
-        {
-            cin >> a[i];
-            if (i == 0)
-            {
-                pre[i] = 0;
-            }
-            else
-            {
-                pre[i] = a[i] + pre[i - 1];
-            }
-        }
-        }
+    }
     return 0;
 }
