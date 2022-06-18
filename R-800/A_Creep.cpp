@@ -52,7 +52,6 @@ int main()
         }
         else
         {
-            ll creep = (max(one, zero) / min(one, zero)) - 1;
             fr(min(zero, one))
             {
                 cout << "10";
