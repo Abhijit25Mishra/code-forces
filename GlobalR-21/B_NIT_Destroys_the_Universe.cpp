@@ -66,6 +66,7 @@ int main()
                 gaps++;
             }
         }
+        // special condition
         if (v.empty())
         {
             cout << 0;
