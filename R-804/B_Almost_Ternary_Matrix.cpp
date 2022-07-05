@@ -51,7 +51,6 @@ int main()
 
         for (ll i = 0; i < h; i++)
         {
-
             for (ll j = 0; j < w; j++)
             {
                 if (j == 0 && i == 0)
