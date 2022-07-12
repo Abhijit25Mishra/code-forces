@@ -44,22 +44,34 @@ int main()
     {
         ll n, q;
         cin >> n >> q;
-        unordered_set<ll> s;
+        map<ll, pair<ll, ll>> m;
         fr(n)
         {
             ll temp;
             cin >> temp;
-            s.insert(temp);
+            if (!m.count(temp))
+            {
+                m[temp].first = i;
+                m[temp].second = i;
+            }
+            else
+            {
+                m[temp].second = i;
+            }
         }
-        for (auto x : s)
-        {
-            cout << x << ' ';
-        }
-        nl;
         fr(q)
         {
             ll a, b;
             cin >> a >> b;
+            if (!m.count(a) || !m.count(b) || m[a].first > m[b].second)
+            {
+                cout << "NO";
+            }
+            else
+            {
+                cout << "YES";
+            }
+            nl;
         }
     }
     return 0;
