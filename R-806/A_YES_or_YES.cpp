@@ -44,36 +44,19 @@ int main()
     {
         string s;
         cin >> s;
-        ll n;
-        cin >> n;
-        map<char, pair<ll, ll>> tab;
-        map<char, ll> x;
-        fr(26)
-        {
-            char ch = (char)(i + 97);
-            tab[ch].first = i + 1;
-            tab[ch].second = 0;
-            x[ch] = 0;
-        }
         fr(s.length())
         {
-            tab[s[i]].second++;
+            s[i] = tolower(s[i]);
         }
-        ll ans = 0;
-        ll i = 0;
-
-        while (ans < n)
+        if (s == "yes")
         {
-            char ch = (char)(i + 97);
-            while (tab[ch].second != 0 && ans < n)
-            {
-                ans += tab[ch].first;
-                tab[ch].second--;
-                x[ch]++;
-            }
-            i++;
+            cout << "YES";
         }
-        
+        else
+        {
+            cout << "NO";
+        }
+        nl;
     }
     return 0;
 }

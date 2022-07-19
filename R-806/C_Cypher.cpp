@@ -42,38 +42,42 @@ int main()
     cin >> t;
     while (t--)
     {
-        string s;
-        cin >> s;
         ll n;
         cin >> n;
-        map<char, pair<ll, ll>> tab;
-        map<char, ll> x;
-        fr(26)
+        vi inp(n);
+        fr(n) { cin >> inp[i]; }
+        fr(n)
         {
-            char ch = (char)(i + 97);
-            tab[ch].first = i + 1;
-            tab[ch].second = 0;
-            x[ch] = 0;
-        }
-        fr(s.length())
-        {
-            tab[s[i]].second++;
-        }
-        ll ans = 0;
-        ll i = 0;
+            ll k;
+            cin >> k;
+            string s;
+            cin >> s;
 
-        while (ans < n)
-        {
-            char ch = (char)(i + 97);
-            while (tab[ch].second != 0 && ans < n)
+            rep(j, 0, k)
             {
-                ans += tab[ch].first;
-                tab[ch].second--;
-                x[ch]++;
+                if (s[j] == 'D')
+                {
+                    inp[i]++;
+                }
+                else if (s[j] == 'U')
+                {
+                    inp[i]--;
+                }
+                if (inp[i] == 10)
+                {
+                    inp[i] = 0;
+                }
+                if (inp[i] == -1)
+                {
+                    inp[i] = 9;
+                }
             }
-            i++;
         }
-        
+        fr(n)
+        {
+            cout << inp[i] << " ";
+        }
+        nl;
     }
     return 0;
 }

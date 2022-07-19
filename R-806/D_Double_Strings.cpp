@@ -42,38 +42,22 @@ int main()
     cin >> t;
     while (t--)
     {
-        string s;
-        cin >> s;
         ll n;
         cin >> n;
-        map<char, pair<ll, ll>> tab;
-        map<char, ll> x;
-        fr(26)
+        map<string, bool> inp;
+        fr(n)
         {
-            char ch = (char)(i + 97);
-            tab[ch].first = i + 1;
-            tab[ch].second = 0;
-            x[ch] = 0;
+            string s;
+            cin >> s;
+            inp[s] = true;
         }
-        fr(s.length())
+        fr(n)
         {
-            tab[s[i]].second++;
-        }
-        ll ans = 0;
-        ll i = 0;
-
-        while (ans < n)
-        {
-            char ch = (char)(i + 97);
-            while (tab[ch].second != 0 && ans < n)
+            bool ok = false;
+            rep(j, 0, n)
             {
-                ans += tab[ch].first;
-                tab[ch].second--;
-                x[ch]++;
             }
-            i++;
         }
-        
     }
     return 0;
 }
