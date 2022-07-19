@@ -43,20 +43,39 @@ int main()
     {
         ll n, x;
         cin >> n >> x;
-        ll pre[n];
-        ll a[n];
+        vi a(n);
+        ll sum = 0;
         fr(n)
         {
             cin >> a[i];
-            if (i == 0)
-            {
-                pre[i] = 0;
-            }
-            else
-            {
-                pre[i] = a[i] + pre[i - 1];
-            }
+            sum += a[i];
         }
+        if (sum < x)
+        {
+            cout << -1;
+            nl;
         }
+        else if (sum == x)
+        {
+            cout << 0;
+            nl;
+        }
+        else
+        {
+            ll l = 0, res = 0, sm = 0;
+            rep(r, 0, n)
+            {
+                sm += a[r];
+                while (sm > x)
+                {
+                    sm -= a[l];
+                    l++;
+                }
+                res = max(res, r - l + 1);
+            }
+            cout << n - res;
+            nl;
+        }
+    }
     return 0;
 }
