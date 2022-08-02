@@ -65,10 +65,6 @@ int main()
                 n = 0;
             }
         }
-        // for (auto z : x)
-        // {
-        //     cout << z;
-        // }
 
         for (int j = x.size() - 1; j >= 0; j--)
         {
