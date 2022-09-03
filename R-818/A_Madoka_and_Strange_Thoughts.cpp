@@ -35,26 +35,6 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int N = 2e5 + 5;
 
-vector<ll> conv(ll x)
-{
-    vector<ll> k;
-
-    while (x > 0)
-    {
-        if (x & 1)
-        {
-            k.pb(1);
-        }
-        else
-        {
-            k.pb(0);
-        }
-        x /= 2;
-    }
-    // reverse(all(k));
-    return k;
-}
-
 int main()
 {
     fast;
@@ -64,58 +44,23 @@ int main()
     {
         ll n;
         cin >> n;
-        vi a(n), b(n);
-        vi x(32);
+        ll cnt = 0;
 
-        fr(n)
-        {
-            cin >> a[i];
-        }
-        fr(n)
-        {
-            cin >> b[i];
-        }
+        cnt = n + 2 * (n / 2) + 2 * (n / 3);
+        cout << cnt;
 
-        // fr(n)
+        // for (int i = 1; i <= n; i++)
         // {
-        //     cin >> a[i];
-        //     if (a[i] != 0)
+        //     for (int j = 1; j <= n; j++)
         //     {
-        //         vi temp = conv(a[i]);
-
-        //         fr(temp.size())
+        //         if (i * j <= pow(gcd(i, j), 2) * 3)
         //         {
-        //             x[i] += temp[i];
+        //             cnt++;
         //         }
         //     }
         // }
-        // fr(n)
-        // {
-        //     cin >> b[i];
-        //     if (b[i] != 0)
-        //     {
-        //         vi temp = conv(b[i]);
-        //         fr(temp.size())
-        //         {
-        //             x[i] += temp[i];
-        //         }
-        //     }
-        // }
-        // ll ans = 0;
-        // fr(32)
-        // {
-        //     if (x[i] % n == 0 && (x[i] / n) & 1)
-        //     {
-        //         x[i] = 1;
-        //     }
-        //     else
-        //     {
-        //         x[i] = 0;
-        //     }
-        //     ans += pow(2, i) * x[i];
-        // }
-        // cout << ans;
-        // nl;
+        // cout << cnt;
+        nl;
     }
     return 0;
 }

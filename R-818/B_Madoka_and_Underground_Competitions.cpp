@@ -35,26 +35,6 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int N = 2e5 + 5;
 
-vector<ll> conv(ll x)
-{
-    vector<ll> k;
-
-    while (x > 0)
-    {
-        if (x & 1)
-        {
-            k.pb(1);
-        }
-        else
-        {
-            k.pb(0);
-        }
-        x /= 2;
-    }
-    // reverse(all(k));
-    return k;
-}
-
 int main()
 {
     fast;
@@ -62,60 +42,48 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vi a(n), b(n);
-        vi x(32);
-
-        fr(n)
+        ll n, k, r, c;
+        cin >> n >> k >> r >> c;
+        r--;
+        c--;
+        char a[n][n];
+        nesfr(n, n)
         {
-            cin >> a[i];
+            a[i][j] = '.';
         }
-        fr(n)
+        a[r][c] = 'X';
+        int z = 0;
+
+        while (c > 0)
         {
-            cin >> b[i];
+            a[r][c] = 'X';
+            c -= k;
+        }
+        while (c < n)
+        {
+            c += k;
+            a[r][c % n] = 'X';
+        }
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (a[(i + r) % n][(j + c) % n] == 'X')
+                {
+                    a[(i + r + 1) % n][(j + c - 1) % n] = 'X';
+                    a[(i + r - 1) % n][(j + c + 1) % n] = 'X';
+                }
+            }
         }
 
-        // fr(n)
-        // {
-        //     cin >> a[i];
-        //     if (a[i] != 0)
-        //     {
-        //         vi temp = conv(a[i]);
-
-        //         fr(temp.size())
-        //         {
-        //             x[i] += temp[i];
-        //         }
-        //     }
-        // }
-        // fr(n)
-        // {
-        //     cin >> b[i];
-        //     if (b[i] != 0)
-        //     {
-        //         vi temp = conv(b[i]);
-        //         fr(temp.size())
-        //         {
-        //             x[i] += temp[i];
-        //         }
-        //     }
-        // }
-        // ll ans = 0;
-        // fr(32)
-        // {
-        //     if (x[i] % n == 0 && (x[i] / n) & 1)
-        //     {
-        //         x[i] = 1;
-        //     }
-        //     else
-        //     {
-        //         x[i] = 0;
-        //     }
-        //     ans += pow(2, i) * x[i];
-        // }
-        // cout << ans;
-        // nl;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                cout << a[i][j];
+            }
+            nl;
+        }
     }
     return 0;
 }
