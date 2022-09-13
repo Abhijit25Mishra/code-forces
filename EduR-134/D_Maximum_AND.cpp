@@ -38,7 +38,6 @@ const int N = 2e5 + 5;
 vector<ll> conv(ll x)
 {
     vector<ll> k;
-
     while (x > 0)
     {
         if (x & 1)

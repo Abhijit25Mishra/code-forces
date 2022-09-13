@@ -47,6 +47,7 @@ int main()
 
         ll k = sqrt(n);
         bool ok = true;
+
         if (k * k == n)
         {
             ll s = sqrt(k);
