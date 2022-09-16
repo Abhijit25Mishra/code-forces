@@ -43,39 +43,30 @@ int main()
     {
         ll n;
         cin >> n;
-        map<ll, ll> mpa;
+        vector<pair<ll, ll>> v(n);
+        vi a(n), b(n);
         fr(n)
         {
-            ll temp;
-            cin >> temp;
-            mpa.insert(make_pair(temp, i));
+            cin >> a[i];
         }
-        vi b(n);
         fr(n)
         {
             cin >> b[i];
         }
-
-        bool ok = true;
-        sort(all(mpa));
-        ll curr = -1;
-        for (auto i = mpa.begin(); i != mpa.end(); i++)
+        fr(n)
         {
-            if (i == mpa.begin())
+            v[i].first = a[i];
+            v[i].second = b[i];
+        }
+        sort(all(v));
+        fr(n - 1)
+        {
+            if (b[i] > b[i + 1])
             {
-                curr = b[i->second];
-            }
-            else if (curr > b[i->second])
-            {
-                ok = false;
-            }
-            else
-            {
-                curr = b[i->second];
+
             }
         }
-        ok ? cout << 1 : cout << 0;
-        nl;
+        nl; nl;
     }
     return 0;
 }
