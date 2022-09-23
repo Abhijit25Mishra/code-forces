@@ -1,5 +1,5 @@
 // Aur Bhai Dekhne aagaye ;)
-// Author: Abhijit Mishra
+// Author: Abhijit Mishra 
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("no-stack-protector")
 #pragma GCC optimize("unroll-loops")
@@ -14,53 +14,24 @@ using namespace std;
 #define mod 1000000007
 #define pb push_back
 #define is insert
+#define mp make_pair
 #define ff first
 #define ss second
 #define all(x) x.begin(), x.end()
 #define min3(a, b, c) min(c, min(a, b))
 #define min4(a, b, c, d) min(d, min(c, min(a, b)))
-#define rfr(n) for (int i = n - 1; i >= 0; i--)
-#define rep1(i, a, b) for (long long i = a; i <= b; i++)
-#define fr(n) for (long long i = 0; i < n; i++)
-#define nesfr(x, y)                   \
-    for (long long i = 0; i < x; i++) \
-        for (long long j = 0; j < y; j++)
-#define rep(i, a, b) for (long long i = a; i < b; i++)
+#define rfr(n) for(int i=n-1;i>=0;i--)
+#define rep1(i,a,b) for(long long i=a;i<=b;i++)
+#define fr(n) for(long long i=0;i<n;i++)
+#define nesfr(x,y) for(long long i=0;i<x;i++)for(long long j=0;j<y;j++)
+#define rep(i,a,b) for(long long i=a;i<b;i++)
 #define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 typedef long long int ll;
 typedef long double ld;
 typedef vector<ll> vi;
 #define nl cout << "\n"
 const unsigned int M = 1000000007;
-const int N = 2e5 + 5;
-
-const string subseqs[] = { "00", "25", "50", "75" };
-
-const int INF = 100;
-
-int solve(string &s, string &t)
-{
-    int sptr = s.length() - 1;
-
-    int ans = 0;
-    while (sptr >= 0 && s[sptr] != t[1])
-    {
-        sptr--;
-        ans++;
-    }
-
-    if (sptr < 0) return INF;
-
-    sptr--;
-
-    while (sptr >= 0 && s[sptr] != t[0])
-    {
-        sptr--;
-        ans++;
-    }
-
-    return sptr < 0 ? INF : ans;
-}
+const int  N = 2e5 + 5;
 
 
 int main()
@@ -70,13 +41,27 @@ int main()
     cin >> t;
     while (t--)
     {
-        string s;
-        cin >> s;
-        int ans = INF;
-        for (auto e : subseqs)
-            ans = min(ans, solve(s, e));
-
-        cout << ans << '\n';
+        ll n;
+        cin >> n;
+        vi inp(n);
+        fr(n)
+        {
+            cin >> inp[i];
+        }
+        ll curr = 0;
+        vi ans;
+        rfr(n)
+        {
+            curr = max(curr - 1, inp[i]);
+            if (curr > 0) { ans.pb(1); }
+            else { ans.pb(0); }
+        }
+        reverse(all(ans));
+        fr(n)
+        {
+            cout << ans[i] << " ";
+        }
+        nl;
     }
     return 0;
 }
