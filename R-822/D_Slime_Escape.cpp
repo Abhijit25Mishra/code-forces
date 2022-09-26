@@ -33,33 +33,6 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
-ll solve(ll ind, vi &a, ll left, ll right, ll curr, vector<vector<ll>> &dp)
-{
-    ll n = a.size();
-    // base case
-    if (ind == 0)
-    {
-        if (curr >= 0) { return dp[ind][curr] = 1; }
-        else { return   0; }
-    }
-    if (ind == n - 1)
-    {
-        if (curr >= 0) { return dp[ind][curr] = 1; }
-        else { return   0; }
-    }
-    if (curr < 0) { return -1; }
-
-    if (dp[ind][curr] != -1) { return dp[ind][curr]; }
-
-    // recursive case
-    ll l = solve(left, a, left - 1, right, curr + a[left], dp);
-    ll r = solve(right, a, left, right + 1, curr + a[right], dp);
-    // cout << l << "     " << r;
-    // nl;
-    if (curr < 0) { return -1; }
-    return dp[ind][curr] = max(l, r);
-}
-
 int main()
 {
     fast;
@@ -67,15 +40,85 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, ind;
-        cin >> n >> ind;
-        ind--;
-        vi a(n);
+        int n, k;
+        cin >> n >> k;
+        k--;
+        vector<int> a(n);
         fr(n) { cin >> a[i]; }
-        vector<vector <ll>> dp(n + 1, vector<ll>(100000, -1));
-        solve(ind, a, ind - 1, ind + 1, a[ind], dp);
-        dp[ind][a[ind]] > 0 ? cout << "YES" : cout << "NO";
-        nl;
+
+        ll i = k - 1;
+        ll j = k + 1;
+        ll sum = a[k];
+        while (1)
+        {
+            ll temp1 = sum;
+            ll id = i;
+            ll maxi = sum;
+            ll ind1 = id;
+            while (id >= 0 && temp1 + a[id] >= 0)
+            {
+                temp1 += a[id];
+                id--;
+                if (temp1 >= maxi)
+                {
+                    maxi = temp1;
+                    ind1 = id;
+                }
+            }
+            if (id < 0)
+            {
+                cout << "YES";
+                nl;
+                break;
+            }
+            ll temp2 = sum;
+            ll jd = j;
+            ll maxj = sum;
+            ll ind2 = jd;
+            while (jd < n && temp2 + a[jd] >= 0)
+            {
+                // cout << a[jd] << " " << jd << " " << temp2;
+                // nl;
+                temp2 += a[jd];
+                jd++;
+                if (temp2 >= maxj)
+                {
+                    maxj = temp2;
+                    ind2 = jd;
+                }
+            }
+            if (jd >= n)
+            {
+                cout << "YES";
+                nl;
+                break;
+            }
+
+            if (sum == maxi && sum == maxj) { cout << "NO\n"; break; }
+            if (sum != maxi && sum != maxj)
+            {
+                if (maxi > maxj)
+                {
+                    i = ind1;
+                    sum = maxi;
+                }
+                else
+                {
+                    j = ind2;
+                    sum = maxj;
+                }
+            }
+            else if (sum != maxi)
+            {
+                i = ind1;
+                sum = maxi;
+            }
+            else
+            {
+                j = ind2;
+                sum = maxj;
+            }
+        }
     }
     return 0;
 }
