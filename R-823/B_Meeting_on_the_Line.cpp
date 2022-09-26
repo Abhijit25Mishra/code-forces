@@ -66,6 +66,7 @@ int main()
             // cout << mx << " " << mi;
             // nl; nl;
             ll ans = mx + mi;
+            cout << setprecision(7);
             cout << double(ans) / 2;
             // fr(n) { f.pb(mp(x[i], t[i])); }
             // last
