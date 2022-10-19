@@ -41,17 +41,50 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        ll q;
+        cin >> q;
+        bool A = 0, B = 0;
+        ll cntA = 0, cntB = 0;
+        fr(q)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            ll x, n;
+            string s;
+            cin >> x >> n >> s;
+
+            for (auto z : s)
+            {
+                if (x == 1)
+                {
+                    if (z != 'a') { A = 1; }
+                    else
+                    {
+                        cntA += n;
+                    }
+                }
+                else
+                {
+                    if (z != 'a') { B = 1; }
+                    else
+                    {
+                        cntB += n;
+                    }
+                }
+            }
+            if (B)
+            {
+                cout << "YES";
+            }
+            else if (!A and cntA < cntB)
+            {
+                cout << "YES";
+            }
+            else
+            {
+                cout << "NO";
+            }
+            nl;
         }
-        ok ? cout << "YES" : cout << "NO";
-        nl;
+
     }
     return 0;
 }

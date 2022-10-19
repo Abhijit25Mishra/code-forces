@@ -43,14 +43,11 @@ int main()
     {
         ll n;
         cin >> n;
-        vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        cout << 1 << " " << n << " ";
+        rep(i, 2, n)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            cout << i << " ";
         }
-        ok ? cout << "YES" : cout << "NO";
         nl;
     }
     return 0;

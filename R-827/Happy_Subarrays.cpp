@@ -37,20 +37,41 @@ const int  N = 2e5 + 5;
 int main()
 {
     fast;
-    ll t = 1;
+    ll t;
     cin >> t;
-    while (t--)
+    rep(testcasenumber, 1, t + 1)
     {
+        ll ans = 0;
         ll n;
         cin >> n;
         vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        vi pre(n);
+        fr(n)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            ll temp;
+            cin >> temp;
+            if (temp != 0) { a.pb(temp); }
         }
-        ok ? cout << "YES" : cout << "NO";
+        rep(i, 0, n)
+        {
+            vi x(n + 1);
+            rep(j, i, n)
+            {
+                if (j == i)
+                {
+                    if (a[j] < 0) { break; }
+                    x[j - i] = a[j];
+                    ans += a[j];
+                }
+                else
+                {
+                    x[j - i] = x[j - i - 1] + a[j];
+                    if (x[j - i] >= 0) { ans += x[j - i]; }
+                    else { break; }
+                }
+            }
+        }
+        cout << "Case #" << testcasenumber << ": " << ans;
         nl;
     }
     return 0;

@@ -43,14 +43,15 @@ int main()
     {
         ll n;
         cin >> n;
-        vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        set<ll> x;
+        fr(n)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            ll temp; cin >> temp;
+            x.insert(temp);
         }
-        ok ? cout << "YES" : cout << "NO";
+        ll ans = (10 - x.size()) * (10 - x.size() - 1);
+        ans = ans * 3;
+        cout << ans;
         nl;
     }
     return 0;

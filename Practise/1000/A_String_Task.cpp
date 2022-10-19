@@ -37,21 +37,24 @@ const int  N = 2e5 + 5;
 int main()
 {
     fast;
-    ll t = 1;
-    cin >> t;
-    while (t--)
+    string s;
+    cin >> s;
+    vector <char> x;
+    fr(s.length())
     {
-        ll n;
-        cin >> n;
-        vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        if (tolower(s[i]) == 'a' || tolower(s[i]) == 'e' || tolower(s[i]) == 'i' || tolower(s[i]) == 'o' || tolower(s[i]) == 'u' || tolower(s[i]) == 'y') {}
+        else
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            x.pb('.');
+            x.pb(tolower(s[i]));
         }
-        ok ? cout << "YES" : cout << "NO";
-        nl;
     }
+
+    fr(x.size())
+    {
+        cout << x[i];
+    }
+
+
     return 0;
 }

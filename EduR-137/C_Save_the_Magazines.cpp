@@ -43,15 +43,44 @@ int main()
     {
         ll n;
         cin >> n;
+        string s;
+        cin >> s;
         vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        ll sum = 0;
+        fr(n) { cin >> a[i]; sum += a[i]; }
+        fr(n)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            if (s[i] == '0')
+            {
+                ll ind = i + 1;
+                while (ind < n && s[ind] == '1')
+                {
+                    if (a[ind] < a[i])
+                    {
+                        s[i] = '1';
+                        s[ind] = '0';
+                        break;
+                    }
+                    else
+                    {
+                        ind++;
+                    }
+                }
+                i = ind - 1;
+            }
         }
-        ok ? cout << "YES" : cout << "NO";
+        fr(n)
+        {
+            if (s[i] == '0')
+            {
+                sum -= (a[i]);
+            }
+        }
+        cout << sum;
         nl;
+
+
+
     }
     return 0;
 }

@@ -33,7 +33,6 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
-
 int main()
 {
     fast;
@@ -41,17 +40,33 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        ll n, q;
+        cin >> n >> q;
+        vector<long long> pref;
+        pref.push_back(0);
+        vector<int> prefmax;
+        for (int i = 0; i < n; i++)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            int x;
+            cin >> x;
+            pref.push_back(pref.back() + x);
+            if (i == 0)
+            {
+                prefmax.push_back(x);
+            }
+            else
+            {
+                prefmax.push_back(max(prefmax.back(), x));
+            }
         }
-        ok ? cout << "YES" : cout << "NO";
-        nl;
+        for (int i = 0; i < q; i++)
+        {
+            int k;
+            cin >> k;
+            int ind = upper_bound(prefmax.begin(), prefmax.end(), k) - prefmax.begin();
+            cout << pref[ind] << " ";
+        }
+        cout << endl;
     }
     return 0;
 }

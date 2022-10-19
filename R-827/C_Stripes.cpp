@@ -41,16 +41,20 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vi a(n);
-        fr(n) { cin >> a[i]; }
+        vector<string> ar(8);
+        for (int i = 0; i < 8; i++)
+            cin >> ar[i];
+        int f = 0;
+        string temp(8, 'R'), temp1(8, 'B');
         bool ok = true;
-        rep(i, 1, n - 1)
+        for (int i = 0; i < 8; i++)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            if (ar[i] == temp)
+            {
+                ok = false;
+            }
         }
-        ok ? cout << "YES" : cout << "NO";
+        ok ? cout << "B" : cout << "R";
         nl;
     }
     return 0;

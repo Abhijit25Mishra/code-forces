@@ -37,20 +37,32 @@ const int  N = 2e5 + 5;
 int main()
 {
     fast;
-    ll t = 1;
+    ll t;
     cin >> t;
-    while (t--)
+    rep(testcasenumber, 1, t + 1)
     {
-        ll n;
-        cin >> n;
-        vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        ll ans = 0;
+
+        ll n, m, p;
+        cin >> m >> n >> p;
+        ll k[m][n];
+        vi mx(n);
+        ll maxa = 0, maxb = 0, maxc = 0;
+        fr(m)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            rep(j, 0, n)
+            {
+                cin >> k[i][j];
+                mx[j] = max(mx[j], k[i][j]);
+            }
         }
-        ok ? cout << "YES" : cout << "NO";
+
+        fr(n)
+        {
+            ans += max(mx[i] - k[p - 1][i], (ll)0);
+        }
+
+        cout << "Case #" << testcasenumber << ": " << ans;
         nl;
     }
     return 0;

@@ -33,6 +33,10 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
+ll summ(ll n)
+{
+    return ((n) * (n + 1) / 2);
+}
 
 int main()
 {
@@ -44,14 +48,36 @@ int main()
         ll n;
         cin >> n;
         vi a(n);
-        fr(n) { cin >> a[i]; }
-        bool ok = true;
-        rep(i, 1, n - 1)
+        fr(n)
         {
-            if (gcd(a[i - 1], a[i + 1]) > a[i] || (gcd(gcd(a[i - 1], a[i + 1]), a[i]) / (gcd(a[i - 1], a[i + 1])) == 0 && a[i] != 1 && gcd(a[i - 1], a[i + 1]) != 1)) { ok = false; }
+            cin >> a[i];
         }
-        ok ? cout << "YES" : cout << "NO";
-        nl;
+        ll l = 0, r = 0, sum = 0, ptr = 1;
+        ll ser = 0;
+        while (r != n)
+        {
+            if (a[r] >= ptr)
+            {
+                ptr++;
+                r++;
+                sum++;
+                ser++;
+            }
+            else
+            {
+                l++;
+                ptr--;
+                // if (l == r) { sum++; }
+                sum += max((ser - 1), 0ll);
+                ser = r - l;
+            }
+        }
+        if (r == n)
+        {
+            sum += max(summ(r - l - 1), 0ll);
+        }
+
+        cout << sum << endl;
     }
     return 0;
 }
