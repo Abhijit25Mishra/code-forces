@@ -43,27 +43,116 @@ int main()
     {
         ll n;
         cin >> n;
-        ll lar = 0, ans = 1;
-        map<ll, ll> m;
+        deque<ll> a(n);
         fr(n)
         {
-            ll temp;
-            cin >> temp;
-            m[temp]++;
-            lar = max(temp, lar);
+            cin >> a[i];
         }
 
-        rep(i, 2, n + 1)
+        sort(all(a));
+        // fr(n)
+        // {
+        //     cout << a[i] << " ";
+        // }
+        vi x(50);
+        ll ans = 0;
+        ll k = 50;
+        fr(k)
         {
-            for (ll j = i; i > 0; i--)
+            deque<ll> b(n);
+            fr(n)
             {
-                if ()
+                b[i] = a[i];
+            }
+            ll lol = 0;
+            while (!b.empty())
+            {
+                if (b.back() > i)
+                {
+                    b.pop_back();
+                }
+                else if (b.front() <= i)
+                {
+                    b.pop_front();
+                    if (!b.empty())
+                    {
+                        b.pop_back();
+                    }
+                    lol++;
+                }
+            }
+            if (lol == i)
+            {
+                ans = max(lol, ans);
+                x[i] = 1;
             }
         }
-
-
+        ans = 0;
+        rep(i, 1, 50)
+        {
+            if (x[i] != 1)
+            {
+                ans = i;
+                break;
+            }
+        }
         cout << ans;
-        nl;
+
+
+
+
+
+        // if (n == 1)
+        // {
+        //     ll x;
+        //     cin >> x;
+        //     if (x == 1)
+        //     {
+        //         cout << 1;
+
+        //     }
+        //     else
+        //     {
+        //         cout << 0;
+        //     }
+        //     nl;
+        // }
+        // else
+        // {
+        //     vi a(n);
+        //     vi b(105, 0);
+        //     fr(n)
+        //     {
+        //         cin >> a[i];
+        //         b[a[i]]++;
+        //     }
+        //     vi c(105, 0);
+        //     fr(105)
+        //     {
+        //         if (i == 0) {}
+        //         else
+        //         {
+        //             c[i] = b[i] + c[i - 1];
+        //         }
+        //     }
+        //     ll ans = 0;
+        //     rep(i, 1, n)
+        //     {
+
+        //         if (c[i] >= i * 2)
+        //         {
+        //             ans++;
+        //         }
+        //         else if (c[i] - c[i - 1] == 1)
+        //         {
+        //             ans++;
+        //             break;
+        //         }
+        //     }
+        //     cout << ans;
+        //     nl;
     }
+
+
     return 0;
 }
