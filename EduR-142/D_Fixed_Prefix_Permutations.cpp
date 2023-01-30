@@ -35,84 +35,62 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
+int get(const vector<ll> &a, const vector<ll> &b)
+{
+    int res = 0;
+    while (res < int(a.size()) && a[res] == b[res])
+        ++res;
+    return res;
+}
+
 void solve()
 {
-    ll n;
-    cin >> n;
-    vi a(n);
-    cin >> a;
-    vi pos(n + 1);
+    ll n, m;
+    cin >> n >> m;
+    vector<vector<ll>> a(n, vector<ll>(m)), b(n, vector<ll>(m));
+    nesfr(n, m)
+    {
+        cin >> a[i][j];
+        a[i][j]--;
+    }
+    nesfr(n, m)
+    {
+        b[i][a[i][j]] = j;
+    }
+    sort(all(b));
     fr(n)
     {
-        pos[a[i]] = i;
-    }
-    // vi x(n);
-    // rep(i, n / 2 + n % 2, n)
-    // {
-    //     if (a[i] > n / 2 + n % 2)
-    //     {
-    //         x[i] = n - a[i];
-    //     }
-    //     else
-    //     {
-    //         x[i] = a[i];
-    //     }
-    // }
-    // rep(i, 0, n / 2)
-    // {
-    //     x[i] = a[i] - (i + 1);
-    // }
+        int j = lower_bound(b.begin(), b.end(), a[i]) - b.begin();
+        int ans = 0;
+        if (j > 0) ans = max(ans, get(a[i], b[j - 1]));
+        if (j < n) ans = max(ans, get(a[i], b[j]));
+        cout << ans << " ";
 
-    // if (n % 2)
-    // {
-    //     x[n / 2 + n % 2] = 0;
-    // }
-    // fr(n)
-    // {
-    //     x[i] %= n / 2;
-    // }
-    // ll ans = -1;
-    // fr(n)
-    // {
-    //     ans = max(x[i], ans);
-    // }
-
-    // cout << ans;
-    // nl;
-    ll high = (n + 2) / 2;
-    ll low = (n + 1) / 2;
-    while (low > 0 && (high == low || (pos[low] < pos[low + 1] && pos[high - 1] < pos[high])))
-    {
-        low--;
-        high++;
     }
-    cout << (n - high + low + 1) / 2;
     nl;
-    // ll high = n / 2 + n % 2;
-    // ll low = n / 2 - 1 + n % 2;
-    // ll k = 1;
-    // while (k > 0 && high < n)
+    // cin >> a;
+    // vi x;
+    // fr(n)
     // {
-    //     k = lower_bound(all(a), high + 1) - lower_bound(all(a), high);
-    //     high++;
+    //     ll ans = 0;
+    //     rep(j, 0, n)
+    //     {
+    //         ll k = 0;
+    //         ll x = a[i][k] - 1;
+    //         while (a[j][x] == k + 1)
+    //         {
+    //             k++;
+    //             if (k < m)
+    //                 x = a[i][k] - 1;
+    //         }
+    //         ans = max(ans, k);
+    //     }
+    //     x.pb(ans);
     // }
-    // while (k > 0 && low > 0)
-    // {
-    //     k = lower_bound(all(a), low) - lower_bound(all(a), low - 1);
-    //     low--;
-    // }
-    // // cout << high << " " << low << endl;
-    // if (high != n)
-    // {
-    //     high--;
-    // }
-    // if (low != 0 && low != 1)
-    // {
-    //     low++;
-    // }
-    // cout << min(n / 2, max(n - high, low));
+    // cout << x;
     // nl;
 }
+
 int main()
 {
     fast;
