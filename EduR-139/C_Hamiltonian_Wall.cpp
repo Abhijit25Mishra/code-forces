@@ -41,11 +41,48 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        string row1, row2;
-        cin >> n >> row1 >> row2;
-        ll i = 0;
 
+        int m;
+        cin >> m;
+        vector<vector<char>> c(2, vector<char>(m));
+        for (int j = 0; j < 2; j++)
+        {
+            for (int k = 0; k < m; k++)
+            {
+                cin >> c[j][k];
+            }
+        }
+        vector<bool> ok(2, true);
+        int cnt = 0;
+        for (int j = 0; j < m; j++)
+        {
+            if (c[0][j] == 'B' && c[1][j] == 'B')
+            {
+                cnt++;
+            }
+            if (c[0][j] == 'W')
+            {
+                ok[cnt % 2] = false;
+                // cout << cnt % 2 << " " << cnt;
+                // nl;
+            }
+            if (c[1][j] == 'W')
+            {
+                ok[1 - cnt % 2] = false;
+                // cout << 1 - (cnt % 2) << " " << (cnt % 2) << " " << cnt;
+                // nl;
+            }
+        }
+        if (ok[0] || ok[1])
+        {
+            cout << "YES" << endl;
+        }
+        else
+        {
+            cout << "NO" << endl;
+        }
     }
+
+
     return 0;
 }

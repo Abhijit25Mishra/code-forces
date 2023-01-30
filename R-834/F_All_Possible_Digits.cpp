@@ -41,88 +41,126 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, p;
-        cin >> n >> p;
-        vi a(n + 1);
-        set<ll> s;
-        fr(p)
+        int N, P;
+        cin >> N >> P;
+        set<int>S;
+        ll A[105];
+        for (int i = 0; i < N; i++)
         {
-            s.insert(i);
+            cin >> A[i];
+            S.insert(A[i]);
         }
-        fr(n + 1)
+        if (S.size() == P)
         {
-            if (i == 0)
-            {
-                a[i] = 0;
-                continue;
-            }
-            cin >> a[i];
-            s.erase(a[i]);
+            cout << "0\n";
+            continue;
         }
-        ll sm = *s.begin();
-        ll lar = 0;
-        for (auto x : s)
+        int f = 0;
+        while (S.find(f) != S.end())f++;
+        if (A[N - 1] <= f)
         {
-            lar = max(x, lar);
+            int lst = P - 1;
+            while (S.find(lst) != S.end())lst--;
+            cout << lst - A[N - 1] << "\n";
+            continue;
         }
-        // ll lar = *s.end();
-        ll ans = 0;
-        ll y = a[n];
-        if (s.size() == 0) { ans = 0; }
-        else if (sm < a[n])
+        int ans = P - A[N - 1];
+        S.insert(0);
+        int carry = 1;
+        for (int i = N - 2; i >= 0 || carry != 0; i--)
         {
-            ans = p - a[n];
-            bool prev = true;
-            a[n] = p - 1;
-            for (int i = n; i > -1; i--)
-            {
-                if (a[i] == (p - 1) && prev == true)
-                {
-                    a[i] = 0;
-                }
-                else
-                {
-                    a[i]++;
-                    prev = false;
-                    break;
-                }
-            }
-            // cout << ans;
-            for (auto x : a)
-            {
-                // cout << x << " ";
-                s.erase(x);
-            }
-            for (auto x : s)
-            {
-                if (x >= y)
-                {
-                    // cout << x << endl;
-                    s.erase(x);
-                }
-            }
-            lar = 0;
-            for (auto x : s)
-            {
-                lar = max(x, lar);
-            }
-            if (!s.empty())
-            {
-                // cout << lar;
-                ans += lar;
-            }
+            int a = carry;
+            if (i >= 0)a += A[i];
+            S.insert(a % P);
+            carry = a / P;
+        }
+        int lst = A[N - 1];
+        while (lst >= 0 && S.find(lst) != S.end())lst--;
+        if (lst >= 0)ans += lst;
+        cout << ans << "\n";
+
+        // ll n, p;
+        // cin >> n >> p;
+        // vi a(n + 1);
+        // set<ll> s;
+        // fr(p)
+        // {
+        //     s.insert(i);
+        // }
+        // fr(n + 1)
+        // {
+        //     if (i == 0)
+        //     {
+        //         a[i] = 0;
+        //         continue;
+        //     }
+        //     cin >> a[i];
+        //     s.erase(a[i]);
+        // }
+        // ll sm = *s.begin();
+        // ll lar = 0;
+        // for (auto x : s)
+        // {
+        //     lar = max(x, lar);
+        // }
+        // // ll lar = *s.end();
+        // ll ans = 0;
+        // ll y = a[n];
+        // if (s.size() == 0) { ans = 0; }
+        // else if (sm < a[n])
+        // {
+        //     ans = p - a[n];
+        //     bool prev = true;
+        //     a[n] = p - 1;
+        //     for (int i = n; i > -1; i--)
+        //     {
+        //         if (a[i] == (p - 1) && prev == true)
+        //         {
+        //             a[i] = 0;
+        //         }
+        //         else
+        //         {
+        //             a[i]++;
+        //             prev = false;
+        //             break;
+        //         }
+        //     }
+        //     // cout << ans;
+        //     for (auto x : a)
+        //     {
+        //         // cout << x << " ";
+        //         s.erase(x);
+        //     }
+        //     for (auto x : s)
+        //     {
+        //         if (x >= y)
+        //         {
+        //             // cout << x << endl;
+        //             s.erase(x);
+        //         }
+        //     }
+        //     lar = 0;
+        //     for (auto x : s)
+        //     {
+        //         lar = max(x, lar);
+        //     }
+        //     if (!s.empty())
+        //     {
+        //         // cout << lar;
+        //         ans += lar;
+        //     }
 
 
-        }
-        else
-        {
+        // }
+        // else
+        // {
 
-            // cout << lar << " " << a[n];
-            // nl;
-            ans = lar - a[n];
-        }
+        //     // cout << lar << " " << a[n];
+        //     // nl;
+        //     ans = lar - a[n];
+        // }
 
-        cout << ans << endl;
+        // cout << ans << endl;
 
 
 

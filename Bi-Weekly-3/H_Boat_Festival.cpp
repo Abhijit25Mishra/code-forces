@@ -1,46 +1,34 @@
-// Aur Bhai Dekhne aagaye ;)
-// Author: Abhijit Mishra 
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
+#define int long long
+#define rapido ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define endl "\n"
 
 
-#define nl cout << "\n"
-#define all(x) x.begin(), x.end()
-#define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-
-
-typedef long long int ll;
-typedef vector<ll> vi;
-
-int main()
+void solve()
 {
-    fast;
-    ll t = 1;
+    int n; int l; int r; cin >> n >> l >> r;
+    vector<int>arr(n);
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    sort(arr.begin(), arr.end());
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+        ans += lower_bound(arr.begin(), arr.begin() + i, l - arr[i]) - upper_bound(arr.begin(), arr.begin() + i, r - arr[i]);
+
+    cout << abs(ans) << endl;
+
+}
+
+int32_t main()
+{
+    rapido;
+    int t = 1;
     cin >> t;
     while (t--)
-    {
-        int n;
-        cin >> n;
-        vector<int> cnt(n + 1);
-        for (int i = 0; i < n; ++i)
-        {
-            int x;
-            cin >> x;
-            ++cnt[x];
-        }
-        int ans = 0;
-        for (int s = 2; s <= 2 * n; ++s)
-        {
-            int cur = 0;
-            for (int i = 1; i < (s + 1) / 2; ++i)
-            {
-                if (s - i > n) continue;
-                cur += min(cnt[i], cnt[s - i]);
-            }
-            if (s % 2 == 0) cur += cnt[s / 2] / 2;
-            ans = max(ans, cur);
-        }
-        cout << ans << endl;
-    }
-    return 0;
+        solve();
 }
+
