@@ -41,39 +41,25 @@ void solve()
 {
     ll n;
     cin >> n;
-    vector<vector<ll>> a(n, vector<ll>(n - 1));
-    cin >> a;
-    map<ll, ll> x;
-    fr(n)
+    if (n & 1)
     {
-        x[a[i][0]]++;
+        cout << -1;
+
     }
-    ll mx;
-    ll cnt = -1;
-    for (auto i : x)
+    else
     {
-        if (i.second > cnt)
+        int a = n / 2, b = n / 2;
+        if (a & n)
         {
-            cnt = i.second;
-            mx = i.first;
+            cout << -1;
+        }
+        else
+        {
+            cout << a + n << " " << b;
         }
     }
-    vi ans;
-    ans.pb(mx);
-    ll j = -1;
-    fr(n)
-    {
-        if (a[i][0] != mx)
-        {
-            j = i;
-        }
-    }
-    fr(n - 1)
-    {
-        ans.pb(a[j][i]);
-    }
-    cout << ans;
     nl;
+
 
 }
 int main()

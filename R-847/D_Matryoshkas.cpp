@@ -41,38 +41,26 @@ void solve()
 {
     ll n;
     cin >> n;
-    vector<vector<ll>> a(n, vector<ll>(n - 1));
+    vi a(n);
     cin >> a;
-    map<ll, ll> x;
+    map<ll, ll> m;
+    set<ll> b;
     fr(n)
     {
-        x[a[i][0]]++;
+        m[a[i]]++;
+        b.insert(a[i]);
+        b.insert(a[i] + 1);
     }
-    ll mx;
-    ll cnt = -1;
-    for (auto i : x)
+    ll last = 0;
+    ll res = 0;
+    for (auto x : b)
     {
-        if (i.second > cnt)
-        {
-            cnt = i.second;
-            mx = i.first;
-        }
+        ll c = m[x];
+        res += max(0ll, c - last);
+        last = c;
+
     }
-    vi ans;
-    ans.pb(mx);
-    ll j = -1;
-    fr(n)
-    {
-        if (a[i][0] != mx)
-        {
-            j = i;
-        }
-    }
-    fr(n - 1)
-    {
-        ans.pb(a[j][i]);
-    }
-    cout << ans;
+    cout << res;
     nl;
 
 }
