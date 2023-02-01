@@ -39,36 +39,39 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    int c;
-    cin >> c;
-    int ans = 0;
-    int s = 1;
-    while (c)
+    ll n, m, d; cin >> n >> m >> d;
+    vi p(n); vi a(m); vi pos(n + 1); cin >> p; cin >> a;
+    fr(n) { p[i]--; }
+    fr(m) { a[i]--; }
+    fr(n)
     {
-        cout << "- " << s << endl;
-        int r;
-        cin >> r;
-        r -= c;
-        ans |= 1 << (r + 1);
-        c--;
-        s = 1 << (r + 1);
+        pos[p[i]] = i;
     }
-    cout << "! " << ans << endl;
-    // ll n;
-    // cin >> n;
-    // ll k = 0;
-    // ll s = 1;
-    // while (n)
-    // {
-    //     cout << "- " << s << endl;
-    //     ll z;
-    //     cin >> z;
-    //     n -= z;
-    //     k |= (1 << (z + 1));
-    //     n--;
-    //     s = 1 << (z + 1);
-    // }
-    // cout << "! " << k << endl;
+    ll ans = mod;
+
+    fr(m - 1)
+    {
+        ll x = pos[a[i + 1]];
+        ll y = pos[a[i]];
+        if (y >= x)
+        {
+            ans = 0;
+        }
+        else if (x > y + d)
+        {
+            ans = 0;
+        }
+        else
+        {
+            ans = min(ans, x - y);
+            if (n - 1 > d)
+            {
+                ans = min(ans, (y + d + 1) - x);
+            }
+        }
+    }
+    cout << ans;
+    nl;
 }
 int main()
 {

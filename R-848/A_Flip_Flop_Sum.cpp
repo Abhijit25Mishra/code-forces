@@ -39,36 +39,48 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    int c;
-    cin >> c;
-    int ans = 0;
-    int s = 1;
-    while (c)
+    ll n;
+    cin >> n;
+    vi a(n);
+    cin >> a;
+    ll sum = 0;
+    bool pos = false;
+    bool neg = false;
+    bool con = false;
+    fr(n) { sum += a[i]; }
+    fr(n - 1)
     {
-        cout << "- " << s << endl;
-        int r;
-        cin >> r;
-        r -= c;
-        ans |= 1 << (r + 1);
-        c--;
-        s = 1 << (r + 1);
+        if (a[i] == -1 && a[i + 1] == -1)
+        {
+            con = true;
+        }
     }
-    cout << "! " << ans << endl;
-    // ll n;
-    // cin >> n;
-    // ll k = 0;
-    // ll s = 1;
-    // while (n)
-    // {
-    //     cout << "- " << s << endl;
-    //     ll z;
-    //     cin >> z;
-    //     n -= z;
-    //     k |= (1 << (z + 1));
-    //     n--;
-    //     s = 1 << (z + 1);
-    // }
-    // cout << "! " << k << endl;
+    fr(n)
+    {
+        if (a[i] == -1)
+        {
+            neg = true;
+        }
+        else if (a[i] == 1)
+        {
+            pos = true;
+        }
+    }
+    if (con)
+    {
+        sum += 4;
+    }
+    else if (neg)
+    {
+
+    }
+    else
+    {
+        sum -= 4;
+    }
+    cout << sum;
+    nl;
+
 }
 int main()
 {
