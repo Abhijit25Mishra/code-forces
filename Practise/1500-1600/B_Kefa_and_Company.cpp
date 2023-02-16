@@ -32,43 +32,35 @@ typedef long long int ll;
 typedef long double ld;
 typedef vector<ll> vi;
 #define nl cout << "\n"
-const unsigned int M = 1000000007;
-const int  N = 2e5 + 5;
 
+typedef long long ll;
+typedef pair<int, ll> pil;
+#define mp make_pair
+#define X first
+#define Y second
 
+const int N = 100100;
+int n;
+int d;
+pil a[N];
+ll ans;
+ll sum[N];
 
-void solve()
-{
-    string s;
-    cin >> s;
-    set<ll> ab, ba;
-    fr(s.length() - 1)
-    {
-        if (s[i] == 'A' && s[i + 1] == 'B') { ab.insert(i); }
-        else if (s[i] == 'B' && s[i + 1] == 'A') { ba.insert(i); }
-    }
-    bool ans = false;
-    for (auto x : ab)
-    {
-        for (auto y : ba)
-        {
-            if (abs(x - y) >= 2) { ans = true; }
-            if (ans) { break; }
-        }
-        if (ans) { break; }
-    }
-    ans ? cout << "YES" : cout << "NO";
-    nl;
-
-}
 int main()
 {
-    fast;
-    ll t = 1;
-    // cin >> t;
-    while (t--)
+    scanf("%d%d", &n, &d);
+    for (int i = 0; i < n; i++)
+        scanf("%d%lld", &a[i].X, &a[i].Y);
+    sort(a, a + n);
+    for (int i = 0; i < n; i++)
+        sum[i + 1] = sum[i] + a[i].Y;
+    int r = 0;
+    for (int l = 0; l < n; l++)
     {
-        solve();
+        while (r < n && a[r].X < a[l].X + d) r++;
+        ans = max(ans, sum[r] - sum[l]);
     }
+    printf("%lld\n", ans);
+
     return 0;
 }

@@ -39,25 +39,27 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    set<ll> ab, ba;
-    fr(s.length() - 1)
+    ll n, m;
+    cin >> n >> m;
+    vi a(n);
+    cin >> a;
+    ll sum = 0, ans = -1;
+    ll l = 0, r = 0;
+    while (r != n)
     {
-        if (s[i] == 'A' && s[i + 1] == 'B') { ab.insert(i); }
-        else if (s[i] == 'B' && s[i + 1] == 'A') { ba.insert(i); }
-    }
-    bool ans = false;
-    for (auto x : ab)
-    {
-        for (auto y : ba)
+        if (sum + a[r] <= m)
         {
-            if (abs(x - y) >= 2) { ans = true; }
-            if (ans) { break; }
+            sum += a[r];
+            r++;
+            ans = max(ans, r - l);
         }
-        if (ans) { break; }
+        else
+        {
+            sum -= a[l];
+            l++;
+        }
     }
-    ans ? cout << "YES" : cout << "NO";
+    cout << ans;
     nl;
 
 }

@@ -39,26 +39,73 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    set<ll> ab, ba;
-    fr(s.length() - 1)
+    ll n, s;
+    cin >> n >> s;
+    if (n == 1 && s == 0) { cout << "0 0"; return; }
+    if ((n * 9) < s || 0 >= s) { cout << -1 << " " << -1 << endl; }
+    else
     {
-        if (s[i] == 'A' && s[i + 1] == 'B') { ab.insert(i); }
-        else if (s[i] == 'B' && s[i + 1] == 'A') { ba.insert(i); }
-    }
-    bool ans = false;
-    for (auto x : ab)
-    {
-        for (auto y : ba)
+        vi ans(n, 0);
+        ll sum = 0;
+        ll i = 0;
+        while (sum != s)
         {
-            if (abs(x - y) >= 2) { ans = true; }
-            if (ans) { break; }
+            if (s - sum > 9)
+            {
+                ans[i] += 9;
+                sum += 9;
+                i++;
+            }
+            else
+            {
+                ans[i] += s - sum;
+                break;
+            }
         }
-        if (ans) { break; }
+        vi ans2(n, 9);
+        ll sum2 = n * 9;
+        i = 0;
+        while (sum2 != s)
+        {
+            if (i == 0)
+            {
+                if (sum2 - s > 8)
+                {
+                    ans2[i] -= 8;
+                    sum2 -= 8;
+                    i++;
+                }
+                else
+                {
+                    ans2[i] -= sum2 - s;
+                    break;
+                }
+            }
+            else
+            {
+                if (sum2 - s > 9)
+                {
+                    ans2[i] -= 9;
+                    sum2 -= 9;
+                    i++;
+                }
+                else
+                {
+                    ans2[i] -= sum2 - s;
+                    break;
+                }
+            }
+        }
+        fr(n)
+        {
+            cout << ans2[i];
+        }
+        cout << " ";
+        fr(n)
+        {
+            cout << ans[i];
+        }
     }
-    ans ? cout << "YES" : cout << "NO";
-    nl;
 
 }
 int main()

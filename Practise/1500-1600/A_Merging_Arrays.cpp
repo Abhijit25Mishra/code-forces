@@ -1,5 +1,3 @@
-// Aur Bhai Dekhne aagaye ;)
-// Author: Abhijit Mishra 
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("no-stack-protector")
 #pragma GCC optimize("unroll-loops")
@@ -10,8 +8,6 @@
 #pragma GCC target("avx,avx2,fma")
 #include <bits/stdc++.h>
 using namespace std;
-template<typename typC> istream &operator>>(istream &cin, vector<typC> &a) { for (auto &x : a) cin >> x; return cin; }
-template<typename typC> ostream &operator<<(ostream &cout, const vector<typC> &a) { int n = a.size(); if (!n) return cout; cout << a[0]; for (int i = 1; i < n; i++) cout << ' ' << a[i]; return cout; }
 #define pi (3.141592653589)
 #define mod 1000000007
 #define pb push_back
@@ -34,41 +30,45 @@ typedef vector<ll> vi;
 #define nl cout << "\n"
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
-
-
-
-void solve()
-{
-    string s;
-    cin >> s;
-    set<ll> ab, ba;
-    fr(s.length() - 1)
-    {
-        if (s[i] == 'A' && s[i + 1] == 'B') { ab.insert(i); }
-        else if (s[i] == 'B' && s[i + 1] == 'A') { ba.insert(i); }
-    }
-    bool ans = false;
-    for (auto x : ab)
-    {
-        for (auto y : ba)
-        {
-            if (abs(x - y) >= 2) { ans = true; }
-            if (ans) { break; }
-        }
-        if (ans) { break; }
-    }
-    ans ? cout << "YES" : cout << "NO";
-    nl;
-
-}
 int main()
 {
     fast;
     ll t = 1;
-    // cin >> t;
+    //cin>>t;
     while (t--)
     {
-        solve();
+        ll n, m;
+        cin >> n >> m;
+        vi ans(n);
+        vi v(m);
+        int  i = 0, j = 0;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> ans[i];
+        }
+        for (int i = 0; i < m; i++)
+        {
+            cin >> v[i];
+        }
+        vi res(n + m);
+        while (i < ans.size() || j < v.size())
+        {
+            if (j == v.size() || (i < ans.size() && ans[i] < v[j]))
+            {
+                res[i + j] = ans[i];
+                i++;
+            }
+            else
+            {
+                res[i + j] = v[j];
+                j++;
+            }
+
+        }
+        for (auto it : res)
+        {
+            cout << it << " ";
+        }
     }
     return 0;
 }

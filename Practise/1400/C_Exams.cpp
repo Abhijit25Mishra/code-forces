@@ -39,26 +39,34 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    set<ll> ab, ba;
-    fr(s.length() - 1)
+    ll n;
+    cin >> n;
+    vector<pair<ll, ll> > a;
+    fr(n)
     {
-        if (s[i] == 'A' && s[i + 1] == 'B') { ab.insert(i); }
-        else if (s[i] == 'B' && s[i + 1] == 'A') { ba.insert(i); }
+        ll x, y;
+        cin >> x >> y;
+        a.pb(mp(y, x));
     }
-    bool ans = false;
-    for (auto x : ab)
+    sort(all(a));
+    ll ans = 0;
+    ll day = 0;
+    for (auto x : a)
     {
-        for (auto y : ba)
+        if (day <= x.second)
         {
-            if (abs(x - y) >= 2) { ans = true; }
-            if (ans) { break; }
+            ans = x.first;
+            day = x.second;
         }
-        if (ans) { break; }
+        else
+        {
+
+        }
+
+
     }
-    ans ? cout << "YES" : cout << "NO";
-    nl;
+
+
 
 }
 int main()
