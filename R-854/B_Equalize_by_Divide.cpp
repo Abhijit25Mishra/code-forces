@@ -41,32 +41,68 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vi a(n);
+    cin >> a;
+    int one = 0;
+    for (int j = 0; j < n; j++)
     {
-        cout << "YES";
+        if (a[j] == 1)
+        {
+            one++;
+        }
+    }
+    if (one == n)
+    {
+        cout << 0 << endl;
+    }
+    else if (one > 0)
+    {
+        cout << -1 << endl;
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        vector<pair<int, int>> op;
+        while (true)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
+            int p1 = 0;
+            for (int j = 0; j < n; j++)
             {
-                cout << "YES";
-                ok = true;
+                if (a[j] > a[p1])
+                {
+                    p1 = j;
+                }
             }
+            int p2 = -1;
+            for (int j = 0; j < n; j++)
+            {
+                if (a[j] < a[p1])
+                {
+                    if (p2 == -1)
+                    {
+                        p2 = j;
+                    }
+                    else if (a[j] > a[p2])
+                    {
+                        p2 = j;
+                    }
+                }
+            }
+            if (p2 == -1)
+            {
+                break;
+            }
+            op.push_back(make_pair(p1, p2));
+            a[p1] = (a[p1] + a[p2] - 1) / a[p2];
         }
-        if (!ok)
+        int q = op.size();
+        cout << q << endl;
+        for (int j = 0; j < q; j++)
         {
-            cout << "NO";
+            cout << op[j].first + 1 << ' ' << op[j].second + 1 << endl;
         }
     }
-    nl;
 }
+
 int main()
 {
     fast;

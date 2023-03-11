@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "internal_math": "cpp",
+        "internal_type_traits": "cpp"
+    }
+}

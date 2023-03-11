@@ -36,34 +36,22 @@ const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
 
-
 void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vi a(n);
+    cin >> a;
+    ll curr = a[0], prod = a[0];
+    ll l = 0, r = 0;
+    while (r != n)
     {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        while (a[l] < r - l + 1)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
+            l++;
         }
-        if (!ok)
-        {
-            cout << "NO";
-        }
+        cout << r - l + 1 << " ";
+        r++;
     }
     nl;
 }

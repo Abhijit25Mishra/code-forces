@@ -36,36 +36,27 @@ const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
 
+bool isPrime(int n)
+{
+    if (n <= 1) return false;
+    if (n <= 3) return true;
+    if (n % 2 == 0 || n % 3 == 0) return false;
+    for (int i = 5; i * i <= n; i = i + 6)
+    {
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    }
+    return true;
+}
+
 
 void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
-    {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
-    }
-    nl;
+    vi a(2 * n);
+    cin >> a;
+
 }
 int main()
 {

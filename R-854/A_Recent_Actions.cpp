@@ -39,33 +39,31 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    ll n, m;
+    cin >> n >> m;
+    vi a(n, -1);
+    set<ll> x;
+    ll j = n - 1, siz = 0;
+
+    fr(m)
     {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        ll b;
+        cin >> b;
+        x.insert(b);
+        if (siz != x.size() && j >= 0)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
+            a[j] = i + 1;
+            j--;
+            siz = x.size();
         }
     }
+    cout << a;
     nl;
+
+
+
+
+
 }
 int main()
 {

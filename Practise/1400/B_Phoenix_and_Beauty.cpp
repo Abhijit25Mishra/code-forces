@@ -13,7 +13,7 @@ using namespace std;
 template<typename typC> istream &operator>>(istream &cin, vector<typC> &a) { for (auto &x : a) cin >> x; return cin; }
 template<typename typC> ostream &operator<<(ostream &cout, const vector<typC> &a) { int n = a.size(); if (!n) return cout; cout << a[0]; for (int i = 1; i < n; i++) cout << ' ' << a[i]; return cout; }
 #define pi (3.141592653589)
-#define mod 1000000007
+// #define mod 1000000007
 #define pb push_back
 #define is insert
 #define mp make_pair
@@ -32,40 +32,54 @@ typedef long long int ll;
 typedef long double ld;
 typedef vector<ll> vi;
 #define nl cout << "\n"
-const unsigned int M = 1000000007;
-const int  N = 2e5 + 5;
-
-
+// const unsigned int M = 1000000007;
+// const int  N = 2e5 + 5;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    ll n, k;
+    cin >> n >> k;
+    vi a(n);
+    cin >> a;
+    set<ll> z;
+    fr(n)
     {
-        cout << "YES";
+        z.insert(a[i]);
+    }
+    if (z.size() <= k)
+    {
+        vi ans(k);
+        ll i = 0;
+        for (auto lm : z)
+        {
+            ans[i] = lm;
+            i++;
+        }
+        while (i != k)
+        {
+            ans[i] = ans[i - 1];
+            i++;
+        }
+
+        cout << k * n;
+        nl;
+        fr(n)
+        {
+            rep(j, 0, k)
+            {
+                cout << ans[j] << " ";
+            }
+        }
+        nl;
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
+        cout << -1;
+        nl;
     }
-    nl;
+
+
+
 }
 int main()
 {

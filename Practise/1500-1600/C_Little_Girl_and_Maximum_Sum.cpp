@@ -35,7 +35,7 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
-
+#include "debug"
 
 void solve()
 {

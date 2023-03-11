@@ -39,39 +39,21 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    double x, y, x1, y1, r;
+    cin >> r >> x >> y >> x1 >> y1;
+    double dist = sqrt(pow(abs(x - x1), 2) + pow(abs(y - y1), 2));
+    ll ans = 0;
+    while (2 * ans * r < dist)
     {
-        cout << "YES";
+        ans++;
     }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
-    }
-    nl;
+    cout << ans;
 }
 int main()
 {
     fast;
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

@@ -41,37 +41,24 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vi a(n);
+    cin >> a;
+    sort(all(a));
+    reverse(all(a));
+    ll sum = 0;
+    for (int i = 1; i <= n; i *= 4)
     {
-        cout << "YES";
+        sum += accumulate(a.begin(), a.begin() + i, 0ll);
     }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
-    }
+    cout << sum;
     nl;
+
 }
 int main()
 {
     fast;
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

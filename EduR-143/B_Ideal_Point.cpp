@@ -39,33 +39,52 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    ll n, k;
+    cin >> n >> k;
+    vector<pair<ll, ll>> a;
+    fr(n)
+    {
+        ll x, y;
+        cin >> x >> y;
+        if (min(x, y) <= k && max(x, y) >= k)
+        {
+            a.pb(mp(x, y));
+        }
+    }
+    vi x(51);
+    for (auto z : a)
+    {
+        rep(i, z.first, z.second + 1)
+        {
+            x[i]++;
+        }
+    }
+    // cout << "hello";
+    ll mx = -1;
+    ll fre = 0;
+    for (auto i : x)
+    {
+        if (mx < i)
+        {
+            mx = i;
+            fre = 1;
+        }
+        else if (mx == i)
+        {
+            fre++;
+        }
+    }
+    if (fre == 1)
     {
         cout << "YES";
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
+        cout << "NO";
     }
     nl;
+
+
 }
 int main()
 {

@@ -41,29 +41,34 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    string s;
+    cin >> s;
+    fr(n)
+    {
+        s[i] = tolower(s[i]);
+    }
+    // cout << s << endl;
+    string x;
+    fr(n - 1)
+    {
+        if (i == 0)
+        {
+            x.pb(s[i]);
+        }
+        if (s[i] != s[i + 1])
+        {
+            x.pb(s[i + 1]);
+        }
+    }
+    // cout << x;
+    // nl;
+    if (x == "meow")
     {
         cout << "YES";
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
+        cout << "NO";
     }
     nl;
 }

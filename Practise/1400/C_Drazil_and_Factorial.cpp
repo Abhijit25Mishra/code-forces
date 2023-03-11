@@ -36,33 +36,37 @@ const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
 
+ll fac(ll x)
+{
+    if (x <= 1) { return 1; }
+
+    return x * fac(x - 1);
+}
 
 void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    string s;
+    cin >> s;
+    ll seven = 0, five = 0, three = 0, two = 0;
+    map<ll, ll> ans;
+    fr(n)
     {
-        cout << "YES";
+        if (s[i] == '9') { ans[2] += 1; ans[3] += 2; ans[7] += 1; }
+        else if (s[i] == '8') { ans[2] += 3; ans[7] += 1; }
+        else if (s[i] == '7') { ans[7] += 1; }
+        else if (s[i] == '6') { ans[3] += 1; ans[5] += 1; }
+        else if (s[i] == '5') { ans[5] += 1; }
+        else if (s[i] == '4') { ans[2] += 2; ans[3] += 1; }
+        else if (s[i] == '3') { ans[3] += 1; }
+        else if (s[i] == '2') { ans[2] += 1; }
     }
-    else
+    rfr(9)
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        for (int j = 0; j < ans[i]; j++)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
+            cout << i;
         }
     }
     nl;
@@ -71,7 +75,7 @@ int main()
 {
     fast;
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

@@ -41,31 +41,24 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    deque<ll> a(n);
+    fr(n)
     {
-        cout << "YES";
+        cin >> a[i];
     }
-    else
+    vi alice, bob;
+
+    fr(n)
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        sort(all(a));
+        reverse(all(a));
+        if (i <= n - 1 - 1)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
+            alice.pb(a[i]);
+            bob.pb(a[n - i - 1]);
         }
     }
-    nl;
+
 }
 int main()
 {

@@ -39,39 +39,57 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    ll n, k;
+    cin >> n >> k;
+    vi power(n), coins(n);
+    cin >> power;
+    cin >> coins;
+    if (n == 1)
     {
-        cout << "YES";
+        cout << coins[0];
+        return;
     }
-    else
+    vector<pair<ll, ll>> a;
+    fr(n)
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        a.pb(mp(power[i], coins[i]));
+    }
+    sort(all(a));
+    vi ans(n);
+    fr(k)
+    {
+        if (i == 0)
+            ans[i] = a[0].second;
+        else
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
+            ans[i] = ans[i - 1] + a[i].second;
         }
-        if (!ok)
+    }
+    rep(i, k, n)
+    {
+        rep(j, i - k, i + 1)
         {
-            cout << "NO";
+            ans[i] += a[j].second;
         }
+    }
+    map<ll, ll> m;
+
+    fr(n)
+    {
+        m[a[i].first] = ans[i];
+    }
+    fr(n)
+    {
+        cout << m[power[i]] << " ";
     }
     nl;
+
 }
 int main()
 {
     fast;
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

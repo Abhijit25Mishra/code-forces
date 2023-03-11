@@ -41,31 +41,33 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vector<string> s(2 * n - 2);
+    cin >> s;
+    bool ok = true;
+    vector<string> k(n, "-1");
+    fr(2 * n - 2)
     {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        // cout << s[i] << " " << k[s[i].size() - 1];
+        // nl;
+        if (k[s[i].size() - 1] == "-1")
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
+            k[s[i].size() - 1] = s[i];
+        }
+        else
+        {
+            reverse(s[i].begin(), s[i].end());
+            // cout << "after reverseing" << s[i] << " " << k[s[i].size() - 1];
+            // nl;
+            if (k[s[i].size() - 1] != s[i])
             {
-                cout << "YES";
-                ok = true;
+                ok = false;
+                break;
             }
         }
-        if (!ok)
-        {
-            cout << "NO";
-        }
     }
+    ok ? cout << "YES" : cout << "NO";
     nl;
+
 }
 int main()
 {

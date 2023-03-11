@@ -41,31 +41,30 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vector<string> a(n);
+    cin >> a;
+    vector<vector<ll>> ans(n);
+    for (int i = 0; i < n; i++)
     {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        ans[i].pb(i + 1);
+        for (int j = 0; j < n; j++)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
+            if (a[i][j] == '1')
             {
-                cout << "YES";
-                ok = true;
+                ans[j].pb(i + 1);
             }
         }
-        if (!ok)
-        {
-            cout << "NO";
-        }
     }
-    nl;
+
+    fr(n)
+    {
+        cout << ans[i].size() << " ";
+        cout << ans[i];
+        nl;
+    }
+
+
+    // cout << a;
 }
 int main()
 {

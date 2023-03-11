@@ -35,37 +35,110 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
+string compliment(string s)
+{
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (s[i] == '1')
+        {
+            s[i] = '0';
+        }
+        else
+        {
+            s[i] = '1';
+        }
+    }
+    return s;
+}
 
 
 void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    string s1, s2;
+    cin >> s1 >> s2;
+    string s3;
+    bool ok = true;
+
+    fr(n)
     {
-        cout << "YES";
+        if (s1[i] == s2[i])
+        {
+            s3.pb('0');
+        }
+        else
+        {
+            s3.pb('1');
+        }
+    }
+
+    if (s3.find('1') && s3.find('0'))
+    {
+        ok = false;
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        ok = true;
+    }
+
+    if (!ok)
+    {
+        cout << "NO";
+        nl;
+    }
+    else
+    {
+        cout << "YES";
+        nl;
+        ll cnt = 0;
+        ll l = -1, r = -1;
+        vector<pair<ll, ll>> a;
+        fr(n)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
+            if (s1[i] == s1[i + 1] && s1[i] == '1')
             {
-                cout << "YES";
-                ok = true;
+                if (l == -1)
+                {
+                    l = i + 1;
+                }
+                else
+                {
+                    r = i + 1;
+                }
             }
+            else if (l != -1)
+            {
+                if (r == -1)
+                {
+                    r = l;
+                }
+                a.pb(mp(l, r));
+                l = -1;
+                r = -1;
+
+            }
+            if (l != -1 && r == -1)
+            {
+
+            }
+            if (s1[n - 1] == '1')
+            {
+                a.pb(mp(l, n));
+            }
+
+
         }
-        if (!ok)
+        cout << a.size();
+        nl;
+        for (auto x : a)
         {
-            cout << "NO";
+            cout << x.first << " " << x.second;
+            nl;
         }
     }
-    nl;
+
+
 }
 int main()
 {

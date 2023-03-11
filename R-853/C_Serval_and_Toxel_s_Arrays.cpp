@@ -39,33 +39,54 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    ll n, m;
+    cin >> n >> m;
+    vi cnt(n + m + 1, 0);
+    vi a(n + 1);
+    // vi t(n + 1);
+    rep(i, 1, n + 1)
     {
-        cout << "YES";
+        cin >> a[i];
+        cnt[a[i]] = m + 1;
     }
-    else
+    rep(i, 1, m + 1)
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
+        ll p, x;
+        cin >> p >> x;
+        cnt[a[p]] -= m - i + 1;
+        cnt[a[p] = x] += m - i + 1;
     }
+
+
+    ll ans = 1ll * m * (m + 1) * n;
+    // cout << ans;
+    // nl;
+    rep(i, 1, n + m + 1)
+    {
+        ans -= 1ll * cnt[i] * (cnt[i] - 1) / 2;
+    }
+    cout << ans;
     nl;
+
+
+    // rep(i, 1, m + 1)
+    // {
+    //     ll p, x;
+    //     cin >> p >> x;
+    //     p--;
+    //     x--;
+    //     cnt[a[p]] += i - t[p];
+    //     t[p] = i, a[p] = x;
+    // }
+    // fr(n) { cnt[a[i]] += m + 1 - t[i]; }
+    // ll res = 1ll * m * (m + 1) * n;
+    // fr(n + m)
+    // {
+    //     res -= 1ll * cnt[i] * (cnt[i] - 1) / 2;
+    // }
+    // cout << res;
+    // nl;
+
 }
 int main()
 {

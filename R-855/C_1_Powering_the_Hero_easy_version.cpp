@@ -41,30 +41,32 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vi a(n);
+    cin >> a;
+    ll tp = 0;
+    ll ans = 0;
+    priority_queue<ll, vi, less<ll>> pq;
+    fr(n)
     {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        if (a[i] == 0)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
+            if (pq.empty())
             {
-                cout << "YES";
-                ok = true;
+                ans += 0;
+            }
+            else
+            {
+                // cout << pq.top() << " ";
+                ans += pq.top();
+                pq.pop();
             }
         }
-        if (!ok)
+        else
         {
-            cout << "NO";
+            pq.push(a[i]);
         }
     }
+    cout << ans;
     nl;
 }
 int main()

@@ -35,36 +35,71 @@ typedef vector<ll> vi;
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
+bool isPrime(int n)
+{
+    // Corner cases
+    if (n <= 1)  return false;
+    if (n <= 3)  return true;
+
+    // This is checked so that we can skip 
+    // middle five numbers in below loop
+    if (n % 2 == 0 || n % 3 == 0) return false;
+
+    for (int i = 5; i * i <= n; i = i + 6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+
+    return true;
+}
+
+// Function to return the smallest
+// prime number greater than N
+int nextPrime(int N)
+{
+
+    // Base case
+    if (N <= 1)
+        return 2;
+
+    int prime = N;
+    bool found = false;
+
+    // Loop continuously until isPrime returns
+    // true for a number greater than n
+    while (!found)
+    {
+        prime++;
+
+        if (isPrime(prime))
+            found = true;
+    }
+
+    return prime;
+}
 
 
 void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vi a(n);
+    cin >> a;
+
+    fr(n)
     {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        if (a[i] == 1)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
+            a[i]++;
         }
     }
+    rep(i, 1, n)
+    {
+        while (a[i] % a[i - 1] == 0)
+        {
+            a[i]++;
+        }
+    }
+    cout << a;
     nl;
 }
 int main()

@@ -41,31 +41,40 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    string s;
+    cin >> s;
+    ll x = 0;
+    bool ok = false;
+    fr(n / 2)
     {
-        cout << "YES";
+        if (s[i] == s[n - i - 1])
+        {
+            if (ok)
+            {
+                x++;
+                ok = false;
+            }
+        }
+        else
+        {
+            ok = true;
+        }
+    }
+    if (ok)
+    {
+        x++;
+    }
+
+    if (x < 2)
+    {
+        cout << "Yes";
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
+        cout << "No";
     }
     nl;
+
 }
 int main()
 {

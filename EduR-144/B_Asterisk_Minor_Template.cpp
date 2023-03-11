@@ -39,33 +39,70 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    string a, b;
+    cin >> a >> b;
+
+    ll n = a.length();
+    ll m = b.length();
+    string x = "";
+    bool ok = true;
+    rep(i, 0, n)
+    {
+        rep(j, 0, m)
+        {
+
+            if (a[i] == b[j] && ok)
+            {
+                if (a[i + 1] == b[j + 1])
+                {
+                    x = a.substr(i, 2);
+                    ok = false;
+                }
+                else
+                {
+                    x = a.substr(i, 1);
+                }
+            }
+        }
+    }
+
+    if (x.length() >= 2)
     {
         cout << "YES";
+        nl;
+        cout << "*" << x << "*";
+        nl;
+    }
+    else if (x.length() == 1)
+    {
+        if (a[0] == b[0])
+        {
+            cout << "YES";
+            nl;
+            cout << a[0] << "*";
+            nl;
+        }
+        else if (a[n - 1] == b[m - 1])
+        {
+            cout << "YES";
+            nl;
+            cout << "*" << a[n - 1];
+            nl;
+        }
+        else
+        {
+            cout << "NO";
+            nl;
+        }
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
+        cout << "NO";
+        nl;
     }
-    nl;
+
+
+
 }
 int main()
 {

@@ -36,42 +36,52 @@ const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
 
-
 void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vi siz(n);
+    vector<vector<ll>> a(n, vector<ll>());
+    fr(n)
     {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        cin >> siz[i];
+        rep(j, 0, siz[i])
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
+            ll x;
+            cin >> x;
+            a[i].pb(x);
         }
     }
-    nl;
+    vector<pair<ll, ll>> x;
+    fr(n)
+    {
+        rep(j, 0, siz[i])
+        {
+            x.pb(mp(a[i][j], i));
+        }
+    }
+    sort(all(x));
+    ll split = 0, combine = 0;
+    fr(x.size() - 1)
+    {
+        if (x[i].second != x[i + 1].second)
+        {
+            split++;
+        }
+        // cout << x[i].first << " " << x[i].second;
+        // nl;
+    }
+    split = split - n + 1;
+    cout << split << " " << n + split - 1;
+
+
 }
+
 int main()
 {
     fast;
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

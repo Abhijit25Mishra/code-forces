@@ -29,49 +29,46 @@ template<typename typC> ostream &operator<<(ostream &cout, const vector<typC> &a
 #define rep(i,a,b) for(long long i=a;i<b;i++)
 #define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 typedef long long int ll;
-typedef long double ld;
+// typedef long ll ld;
 typedef vector<ll> vi;
 #define nl cout << "\n"
 const unsigned int M = 1000000007;
 const int  N = 2e5 + 5;
 
 
+ll dist(ll x1, ll y1, ll x2, ll y2)
+{
+
+    return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+}
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    ll ax, ay, bx, by, cx, cy;
+    cin >> ax >> ay >> bx >> by >> cx >> cy;
+    if ((ax * (by - cy) + bx * (cy - ay) + cx * (ay - by)) == 0)
     {
-        cout << "YES";
+        cout << "No";
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        if (dist(ax, ay, bx, by) == dist(bx, by, cx, cy))
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
+            cout << "Yes";
         }
-        if (!ok)
+        else
         {
-            cout << "NO";
+            cout << "No";
         }
     }
     nl;
+
 }
 int main()
 {
     fast;
     ll t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
     {
         solve();

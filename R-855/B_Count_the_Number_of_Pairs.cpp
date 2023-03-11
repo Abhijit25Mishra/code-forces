@@ -39,33 +39,35 @@ const int  N = 2e5 + 5;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    if (n > 12000)
+    ll n, k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
+    map<char, ll> m;
+    fr(n)
     {
-        cout << "YES";
+        m[s[i]]++;
+    }
+
+    ll sum = 0;
+    ll alr = 0;
+
+    fr(26)
+    {
+        alr += min(m[65 + i], m[97 + i]);
+        sum += abs((m[65 + i] - m[97 + i])) / 2;
+    }
+    if (sum >= k)
+    {
+        alr += k;
     }
     else
     {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
-        {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
-        }
+        alr += sum;
     }
+    cout << alr;
     nl;
+
 }
 int main()
 {

@@ -41,30 +41,32 @@ void solve()
 {
     ll n;
     cin >> n;
-    if (n > 12000)
+    vi a(n);
+    cin >> a;
+    vi b(n);
+    cin >> b;
+    vi ans(n);
+    fr(n)
     {
-        cout << "YES";
-    }
-    else
-    {
-        ll a = n / 111;
-        ll b = n / 11;
-        a++; b++;
-        bool ok = false;
-        nesfr(a, b)
+        ll k = 0;
+        while (a[i] != 0 && i + k < n)
         {
-            if (ok) { break; }
-            if (i * 111 + j * 11 == n)
-            {
-                cout << "YES";
-                ok = true;
-            }
-        }
-        if (!ok)
-        {
-            cout << "NO";
+            ans[i + k] += min(b[i + k], a[i]);
+            a[i] -= min(b[i + k], a[i]);
+            k++;
         }
     }
+    // cout << ans;
+    // rep(i, 0, n)
+    // {
+    //     rep(j, i, n)
+    //     {
+    //         // i==1 
+    //         ans[j] += min(a[j - i], b[j]);
+    //         a[j - i] -= min(a[j - i], b[j]);
+    //     }
+    // }
+    cout << ans;
     nl;
 }
 int main()
