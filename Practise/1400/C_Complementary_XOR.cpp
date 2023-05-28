@@ -56,87 +56,160 @@ void solve()
 {
     ll n;
     cin >> n;
-    string s1, s2;
-    cin >> s1 >> s2;
-    string s3;
+    string a, b;
+    cin >> a >> b;
     bool ok = true;
-
-    fr(n)
+    bool opp = false, same = false;
+    ll ones = 0;
+    // string a, b;
+    // cin >> n >> a >> b;
+    if (n == 1 && b == "1")
     {
-        if (s1[i] == s2[i])
+        cout << "No\n";
+        return;
+    }
+    vector<int> f(n), g(n);
+    for (int i = 1; i < n; i ++) f[i] = (a[i] - '0') ^ (a[i - 1] - '0');
+    for (int i = 1; i < n; i ++) g[i] = (b[i] - '0') ^ (b[i - 1] - '0');
+    f[0] = a[0] - '0';
+    g[0] = b[0] - '0';
+    int flag = 1;
+    for (int i = 1; i < n; i ++) if (f[i] != g[i])
+    {
+        cout << "No\n";
+        flag = 0;
+        break;
+    }
+    if (!flag) return;
+    vector<pair<int, int>> ans;
+    int lst = -1;
+    for (int i = 1; i < n; i ++) if (f[i])
+    {
+        if (lst == -1)
         {
-            s3.pb('0');
+            lst = i;
         }
         else
         {
-            s3.pb('1');
+            ans.emplace_back(lst + 1, i);
+            g[0] ^= 1;
+            lst = -1;
         }
     }
-
-    if (s3.find('1') && s3.find('0'))
+    if (lst != -1)
     {
-        ok = false;
+        ans.emplace_back(1, lst);
+        f[0] ^= 1;
     }
-    else
+    if (f[0] && g[0])
     {
-        ok = true;
+        ans.emplace_back(1, 1);
+        ans.emplace_back(2, n);
     }
-
-    if (!ok)
+    else if (f[0] && !g[0])
     {
-        cout << "NO";
-        nl;
+        ans.emplace_back(1, n);
     }
-    else
+    else if (!f[0] && g[0])
     {
-        cout << "YES";
-        nl;
-        ll cnt = 0;
-        ll l = -1, r = -1;
-        vector<pair<ll, ll>> a;
-        fr(n)
-        {
-            if (s1[i] == s1[i + 1] && s1[i] == '1')
-            {
-                if (l == -1)
-                {
-                    l = i + 1;
-                }
-                else
-                {
-                    r = i + 1;
-                }
-            }
-            else if (l != -1)
-            {
-                if (r == -1)
-                {
-                    r = l;
-                }
-                a.pb(mp(l, r));
-                l = -1;
-                r = -1;
-
-            }
-            if (l != -1 && r == -1)
-            {
-
-            }
-            if (s1[n - 1] == '1')
-            {
-                a.pb(mp(l, n));
-            }
-
-
-        }
-        cout << a.size();
-        nl;
-        for (auto x : a)
-        {
-            cout << x.first << " " << x.second;
-            nl;
-        }
+        ans.emplace_back(1, 1);
+        ans.emplace_back(2, 2);
+        ans.emplace_back(1, 2);
     }
+    cout << "Yes\n";
+    cout << ans.size() << '\n';
+    for (auto [l, r] : ans) cout << l << ' ' << r << '\n';
+    // fr(n)
+    // {
+    //     if (s1[i] == '1')
+    //     {
+    //         ones++;
+    //     }
+    //     if (s1[i] == s2[i])
+    //     {
+    //         same = true;
+    //     }
+    //     if (s1[i] != s2[i])
+    //     {
+    //         opp = true;
+    //     }
+    // }
+    // if (same && opp)
+    // {
+    //     cout << "NO";
+    //     nl;
+    // }
+    // else
+    // {
+    //     bool lmao = true;
+    //     vector<pair<ll, ll>> ans;
+    //     if (ones & 1)
+    //     {
+
+    //         if (same)
+    //         {
+    //             if (ones == n)
+    //             {
+    //                 ans.pb(mp(1, 1));
+    //                 ans.pb(mp(2, n));
+    //                 lmao = false;
+    //             }
+    //             else
+    //             {
+    //                 ans.pb(mp(1, n));
+    //                 fr(n)
+    //                 {
+    //                     if (s1[i] == '1') { s1[i] = '0'; }
+    //                     else { s1[i] = '1'; }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         if (same)
+    //         {
+    //         }
+    //         else
+    //         {
+    //             ans.pb(mp(1, n));
+
+    //             fr(n)
+    //             {
+    //                 if (s1[i] == '1') { s1[i] = '0'; }
+    //                 else { s1[i] = '1'; }
+    //             }
+    //         }
+    //     }
+    //     if (lmao)
+    //     {
+    //         fr(n)
+    //         {
+    //             if (s1[i] == '1') { ans.pb(mp(i + 1, i + 1)); }
+    //         }
+    //     }
+    //     cout << "YES";
+    //     nl;
+    //     cout << ans.size();
+    //     nl;
+    //     for (auto i : ans)
+    //     {
+    //         cout << i.first << " " << i.second << endl;
+    //     }
+    // }
+
+
+    // complety same -even 1s 
+    // just flip every 1
+
+    // complety same -odd 1s 
+    // complete flip the first string then flip every 1 
+
+    // completly diff -even 1s 
+    // complete flip then all ones
+
+    // completly diff -odd 1s
+    // flip very 1
 
 
 }
